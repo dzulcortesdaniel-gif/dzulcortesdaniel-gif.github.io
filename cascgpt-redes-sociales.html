@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redes Sociales - CASC GPT</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Raleway:wght@300;400;600;700;800&family=Mulish:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { 
+      --background-color: #000000;
+      --default-color: #FFFFFF;
+      --heading-color: #FFFFFF;
+      --accent-color: #FF0000;
+      --surface-color: #000000;
+      --contrast-color: #FFFFFF;
+      --nav-color: #FFFFFF;
+      --nav-hover-color: #FF0000;
+      --nav-mobile-background-color: #000000;
+      --nav-dropdown-background-color: #000000;
+      --nav-dropdown-color: #F5F5F5;
+      --nav-dropdown-hover-color: #FF0000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--background-color);
+      color: var(--default-color);
+      font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Background Matrix Style */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .matrix-line {
+      position: absolute;
+      top: -100%;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--accent-color);
+      opacity: 0.3;
+      animation: matrixFall linear infinite;
+      text-shadow: 0 0 5px var(--accent-color);
+    }
+
+    @keyframes matrixFall {
+      0% {
+        top: -100%;
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    /* Holographic Grid */
+    .holo-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent 49%, rgba(255,0,0,0.03) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(255,0,0,0.03) 50%, transparent 51%);
+      background-size: 50px 50px;
+      z-index: 1;
+      pointer-events: none;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(50px);
+      }
+    }
+
+    /* Neon Scanner Line */
+    .scanner-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      box-shadow: 0 0 20px var(--accent-color);
+      animation: scan 4s linear infinite;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% {
+        top: -3px;
+      }
+      100% {
+        top: 100%;
+      }
+    }
+
+    /* Header Navigation */
+    .header {
+      color: var(--default-color);
+      background-color: var(--background-color);
+      padding: 15px 0;
+      transition: all 0.5s;
+      z-index: 997;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      box-shadow: 0px 0 18px rgba(0, 0, 0, 0.8);
+    }
+
+    .header .logo {
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .header .logo h1 {
+      font-size: 30px;
+      margin: 0;
+      font-weight: 400;
+      color: var(--heading-color);
+    }
+
+    .header .logo:hover,
+    .header .logo:focus {
+      text-decoration: none;
+    }
+
+    .header .btn-getstarted,
+    .header .btn-getstarted:focus {
+      color: var(--contrast-color);
+      background: var(--accent-color);
+      font-size: 14px;
+      padding: 8px 25px;
+      margin: 0 0 0 30px;
+      border-radius: 50px;
+      transition: 0.3s;
+      text-decoration: none;
+      border: none;
+      outline: none;
+    }
+
+    .header .btn-getstarted:hover,
+    .header .btn-getstarted:focus:hover {
+      color: var(--contrast-color);
+      background: color-mix(in srgb, var(--accent-color), transparent 15%);
+      text-decoration: none;
+    }
+
+    /* Navmenu - Desktop */
+    @media (min-width: 1200px) {
+      .navmenu {
+        padding: 0;
+      }
+
+      .navmenu ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        align-items: center;
+      }
+
+      .navmenu li {
+        position: relative;
+      }
+
+      .navmenu a,
+      .navmenu a:focus {
+        color: var(--nav-color);
+        padding: 18px 15px;
+        font-size: 16px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+
+      .navmenu a i,
+      .navmenu a:focus i {
+        font-size: 12px;
+        line-height: 0;
+        margin-left: 5px;
+        transition: 0.3s;
+      }
+
+      .navmenu li:hover>a,
+      .navmenu .active,
+      .navmenu .active:focus {
+        color: var(--nav-hover-color);
+      }
+
+      .navmenu .dropdown ul {
+        margin: 0;
+        padding: 10px 0;
+        background: var(--nav-dropdown-background-color);
+        display: block;
+        position: absolute;
+        visibility: hidden;
+        left: 14px;
+        top: 130%;
+        opacity: 0;
+        transition: 0.3s;
+        border-radius: 4px;
+        z-index: 99;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .navmenu .dropdown ul li {
+        min-width: 200px;
+      }
+
+      .navmenu .dropdown ul a {
+        padding: 10px 20px;
+        font-size: 15px;
+        text-transform: none;
+        color: var(--nav-dropdown-color);
+      }
+
+      .navmenu .dropdown ul a:hover,
+      .navmenu .dropdown ul .active:hover,
+      .navmenu .dropdown ul li:hover>a {
+        color: var(--nav-dropdown-hover-color);
+      }
+
+      .navmenu .dropdown:hover>ul {
+        opacity: 1;
+        top: 100%;
+        visibility: visible;
+      }
+    }
+
+    /* Navmenu - Mobile */
+    @media (max-width: 1199px) {
+      .mobile-nav-toggle {
+        color: var(--nav-color);
+        font-size: 28px;
+        line-height: 0;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .navmenu {
+        padding: 0;
+        z-index: 9997;
+      }
+
+      .navmenu ul {
+        display: none;
+        list-style: none;
+        position: absolute;
+        inset: 60px 20px 20px 20px;
+        padding: 10px 0;
+        margin: 0;
+        border-radius: 6px;
+        background-color: var(--nav-mobile-background-color);
+        overflow-y: auto;
+        transition: 0.3s;
+        z-index: 9998;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .navmenu a,
+      .navmenu a:focus {
+        color: var(--nav-dropdown-color);
+        padding: 10px 20px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 17px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+        transition: 0.3s;
+      }
+
+      .navmenu a:hover,
+      .navmenu .active,
+      .navmenu .active:focus {
+        color: var(--nav-dropdown-hover-color);
+      }
+
+      .navmenu .dropdown ul {
+        position: static;
+        display: none;
+        z-index: 99;
+        padding: 10px 0;
+        margin: 10px 20px;
+        background-color: var(--nav-dropdown-background-color);
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        transition: all 0.5s ease-in-out;
+      }
+
+      .navmenu .dropdown>.dropdown-active {
+        display: block;
+        background-color: var(--background-color);
+      }
+
+      .mobile-nav-active {
+        overflow: hidden;
+      }
+
+      .mobile-nav-active .mobile-nav-toggle {
+        color: var(--default-color);
+        position: absolute;
+        font-size: 32px;
+        top: 15px;
+        right: 15px;
+        margin-right: 0;
+        z-index: 9999;
+      }
+
+      .mobile-nav-active .navmenu {
+        position: fixed;
+        overflow: hidden;
+        inset: 0;
+        background: var(--background-color);
+        transition: 0.3s;
+      }
+
+      .mobile-nav-active .navmenu>ul {
+        display: block;
+      }
+    }
+
+    /* Header Futuristic */
+    header.hero-section {
+      position: relative;
+      z-index: 10;
+      padding: 180px 20px 80px;
+      text-align: center;
+      background: var(--background-color);
+    }
+
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0) rotateY(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotateY(180deg);
+      }
+    }
+
+    .logo-hexagon {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, var(--accent-color), #990000);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 30px rgba(255,0,0,0.6);
+      animation: hexPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes hexPulse {
+      0%, 100% {
+        box-shadow: 0 0 30px rgba(255,0,0,0.6);
+      }
+      50% {
+        box-shadow: 0 0 60px rgba(255,0,0,1);
+      }
+    }
+
+    .logo-hexagon::before {
+      content: 'CASC';
+      position: absolute;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--contrast-color);
+      letter-spacing: 2px;
+    }
+
+    header.hero-section h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--default-color) 0%, var(--accent-color) 50%, var(--default-color) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shineText 3s linear infinite;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      text-shadow: 0 0 30px rgba(255,0,0,0.5);
+    }
+
+    @keyframes shineText {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    header.hero-section p {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      opacity: 0.9;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease-out 0.3s backwards;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .btn-back {
+      display: inline-block;
+      padding: 18px 50px;
+      background: transparent;
+      color: var(--accent-color);
+      text-decoration: none;
+      border: 2px solid var(--accent-color);
+      border-radius: 0;
+      font-weight: 700;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 20px rgba(255,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-back::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-color);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn-back:hover::before {
+      left: 0;
+    }
+
+    .btn-back:hover {
+      color: var(--contrast-color);
+      box-shadow: 0 0 40px rgba(255,0,0,0.8);
+      transform: translateY(-5px);
+    }
+
+    /* Cards Container */
+    .redes-container {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 50px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      background: var(--background-color);
+    }
+
+    /* Futuristic Social Cards */
+    .card-redes {
+      position: relative;
+      background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
+      padding: 0;
+      text-align: center;
+      text-decoration: none;
+      color: var(--default-color);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      border: 2px solid rgba(255,0,0,0.3);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+      animation: cardSlideIn 0.8s ease-out backwards;
+    }
+
+    .card-redes:nth-child(1) { animation-delay: 0.2s; }
+    .card-redes:nth-child(2) { animation-delay: 0.4s; }
+    .card-redes:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes cardSlideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-100px) rotateY(-90deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0) rotateY(0deg);
+      }
+    }
+
+    /* Animated corner accent */
+    .card-corner {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      background: var(--accent-color);
+      transition: all 0.5s ease;
+    }
+
+    .card-redes:hover .card-corner {
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+    }
+
+    /* Top bar accent */
+    .card-accent {
+      height: 5px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      animation: accentMove 2s linear infinite;
+    }
+
+    @keyframes accentMove {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .card-content {
+      padding: 50px 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-redes:hover {
+      transform: translateY(-20px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(255,0,0,0.5);
+      border-color: var(--accent-color);
+    }
+
+    /* Icon container with rotation */
+    .icon-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-border {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--accent-color);
+      border-radius: 50%;
+      animation: rotateBorder 3s linear infinite;
+    }
+
+    @keyframes rotateBorder {
+      0% {
+        transform: rotate(0deg);
+        border-color: var(--accent-color);
+      }
+      50% {
+        border-color: var(--default-color);
+      }
+      100% {
+        transform: rotate(360deg);
+        border-color: var(--accent-color);
+      }
+    }
+
+    .icon-border::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--accent-color);
+    }
+
+    .card-redes i {
+      font-size: 4.5rem;
+      transition: all 0.6s ease;
+      position: relative;
+      z-index: 2;
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes iconFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .card-redes:hover i {
+      transform: scale(1.3) rotateZ(360deg);
+      filter: drop-shadow(0 0 30px currentColor);
+    }
+
+    /* Icon Colors with glow */
+    .card-redes:nth-child(1) i { 
+      color: #1877F2;
+      filter: drop-shadow(0 0 10px #1877F2);
+    }
+    .card-redes:nth-child(2) i { 
+      background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 10px #DD2A7B);
+    }
+    .card-redes:nth-child(3) i { 
+      color: #00F2EA;
+      filter: drop-shadow(0 0 10px #00F2EA);
+    }
+
+    .card-redes h3 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      color: var(--heading-color);
+    }
+
+    .card-redes h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width 0.4s ease;
+    }
+
+    .card-redes:hover h3::after {
+      width: 80%;
+    }
+
+    .card-redes:hover h3 {
+      color: var(--accent-color);
+      text-shadow: 0 0 20px var(--accent-color);
+    }
+
+    .card-redes p {
+      font-size: 1rem;
+      opacity: 0.7;
+      line-height: 1.8;
+      transition: all 0.3s ease;
+    }
+
+    .card-redes:hover p {
+      opacity: 1;
+    }
+
+    /* Cyber badge */
+    .cyber-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,0,0,0.9);
+      padding: 8px 20px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--accent-color);
+      clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+      opacity: 0;
+      transform: translateX(30px) rotateZ(5deg);
+      transition: all 0.5s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+    }
+
+    .card-redes:hover .cyber-badge {
+      opacity: 1;
+      transform: translateX(0) rotateZ(0deg);
+    }
+
+    /* Holographic effect overlay */
+    .holo-effect {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(255,255,255,0.1) 50%, 
+        transparent 70%);
+      transform: rotate(45deg);
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+
+    .card-redes:hover .holo-effect {
+      opacity: 1;
+      top: -100%;
+      left: -100%;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--background-color);
+      margin-top: 80px;
+      border-top: 1px solid rgba(255,0,0,0.2);
+    }
+
+    footer p {
+      opacity: 0.8;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-tagline {
+      margin-top: 15px;
+      font-size: 0.85rem;
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    /* Glitch effect on hover */
+    @keyframes glitch {
+      0% {
+        transform: translate(0);
+      }
+      20% {
+        transform: translate(-2px, 2px);
+      }
+      40% {
+        transform: translate(-2px, -2px);
+      }
+      60% {
+        transform: translate(2px, 2px);
+      }
+      80% {
+        transform: translate(2px, -2px);
+      }
+      100% {
+        transform: translate(0);
+      }
+    }
+
+    .card-redes:active {
+      animation: glitch 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 1199px) {
+      .header .logo {
+        order: 1;
+      }
+
+      .header .btn-getstarted {
+        order: 2;
+        margin: 0 15px 0 0;
+        padding: 6px 15px;
+      }
+
+      .header .navmenu {
+        order: 3;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header.hero-section {
+        padding-top: 120px;
+      }
+
+      header.hero-section h1 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+      }
+
+      .redes-container {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+        gap: 40px;
+      }
+
+      .card-content {
+        padding: 40px 20px;
+      }
+
+      .logo-hexagon {
+        width: 120px;
+        height: 120px;
+      }
+
+      .icon-container {
+        width: 100px;
+        height: 100px;
+      }
+
+      .card-redes i {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  // Mostrar preloader al cambiar de página
+document.querySelectorAll('a[href]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    // Solo activar para enlaces internos que no son anclas
+    if (href && !href.startsWith('#') && !href.startsWith('http') && !this.hasAttribute('target')) {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.display = 'block';
+      }
+    }
+  });
+});
+</script>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.webp" alt=""> -->
+        <h1 class="sitename">CASC GPT</h1>
+      </a>
+
+ <nav id="navmenu" class="navmenu">
+  <ul>
+    <li><a href="#hero" class="active">Inicio</a></li>
+
+    <li><a href="nosotros.html">Nosotros Somos</a></li>
+
+    <li><a href="index.html#portfolio">Mercancía</a></li>
+
+    <li class="dropdown">
+      <a href="cascgpt-redes-sociales.html"><span>Conócenos</span> 
+        <i class="bi bi-chevron-down toggle-dropdown"></i>
+      </a>
+      <ul>
+        <li><a href="https://www.facebook.com/casc.gpt" target="_blank">Facebook</a></li>
+        <li><a href="https://www.instagram.com/cascgpt/" target="_blank">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@cascgpt?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+
+      <a class="btn-getstarted" href="Compra.html">Comprar</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="logo-container">
+      <div class="logo-hexagon"></div>
+    </div>
+    <h1>CASC GPT</h1>
+    <p>// Síguenos en todas nuestras plataformas //</p>
+    <a href="index.html" class="btn-back">
+      <i class="bi bi-arrow-left me-2"></i>Inicio
+    </a>
+  </header>
+
+  <main class="redes-container">
+    <!-- Facebook Card -->
+    <a href="https://www.facebook.com/casc.gpt" target="_blank" class="card-redes">
+      <div class="card-accent"></div>
+      <div class="card-corner"></div>
+      <div class="holo-effect"></div>
+      <div class="cyber-badge">
+        <i class="bi bi-broadcast me-1"></i>LIVE
+      </div>
+      <div class="card-content">
+        <div class="icon-container">
+          <div class="icon-border"></div>
+          <i class="bi bi-facebook"></i>
+        </div>
+        <h3>Facebook</h3>
+        <p>Descubre nuestras últimas novedades, lanzamientos de cascos inteligentes y únete a nuestra comunidad tecnológica.</p>
+      </div>
+    </a>
+
+    <!-- Instagram Card -->
+    <a href="https://www.instagram.com/cascgpt/" target="_blank" class="card-redes">
+      <div class="card-accent"></div>
+      <div class="card-corner"></div>
+      <div class="holo-effect"></div>
+      <div class="cyber-badge">
+        <i class="bi bi-images me-1"></i>VISUAL
+      </div>
+      <div class="card-content">
+        <div class="icon-container">
+          <div class="icon-border"></div>
+          <i class="bi bi-instagram"></i>
+        </div>
+        <h3>Instagram</h3>
+        <p>Explora nuestros diseños exclusivos, promociones especiales y contenido visual de última generación en tecnología.</p>
+      </div>
+    </a>
+
+    <!-- TikTok Card -->
+    <a href="https://www.tiktok.com/@cascgpt?is_from_webapp=1&sender_device=pc" target="_blank" class="card-redes">
+      <div class="card-accent"></div>
+      <div class="card-corner"></div>
+      <div class="holo-effect"></div>
+      <div class="cyber-badge">
+        <i class="bi bi-play-circle me-1"></i>VIRAL
+      </div>
+      <div class="card-content">
+        <div class="icon-container">
+          <div class="icon-border"></div>
+          <i class="bi bi-tiktok"></i>
+        </div>
+        <h3>TikTok</h3>
+        <p>Videos cortos y dinámicos sobre innovación, tecnología wearable y las mejores experiencias de seguridad inteligente.</p>
+      </div>
+    </a>
+  </main>
+
+  <footer>
+    <p>© 2025 CASC GPT - ALL RIGHTS RESERVED</p>
+    <p class="footer-tagline">Cascos Tecnológicos con IA Integrada | Innovación y Seguridad</p>
+  </footer>
+
+  <script>
+    // Create Matrix-style falling code
+    function createMatrix() {
+      const bgAnimation = document.getElementById('bgAnimation');
+      const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+      const columns = Math.floor(window.innerWidth / 20);
+
+      for (let i = 0; i < columns; i++) {
+        const line = document.createElement('div');
+        line.classList.add('matrix-line');
+        line.style.left = (i * 20) + 'px';
+        line.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        line.style.animationDelay = Math.random() * 2 + 's';
+        
+        let text = '';
+        for (let j = 0; j < 20; j++) {
+          text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+        }
+        line.innerHTML = text;
+        
+        bgAnimation.appendChild(line);
+      }
+    }
+
+    // Parallax effect on mouse move
+    document.addEventListener('mousemove', (e) => {
+      const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+      const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+      
+      document.querySelectorAll('.card-redes').forEach((card, index) => {
+        card.style.transform = `perspective(1000px) rotateY(${moveX * (index + 1) * 0.1}deg) rotateX(${-moveY * (index + 1) * 0.1}deg)`;
+      });
+    });
+
+    // Reset transform on mouse leave
+    document.addEventListener('mouseleave', () => {
+      document.querySelectorAll('.card-redes').forEach(card => {
+        card.style.transform = '';
+      });
+    });
+
+    // Navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      const body = document.body;
+
+      if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', function() {
+          body.classList.toggle('mobile-nav-active');
+          this.classList.toggle('bi-list');
+          this.classList.toggle('bi-x');
+        });
+      }
+
+      // Dropdown toggle
+      document.querySelectorAll('.navmenu .toggle-dropdown').forEach(item => {
+        item.addEventListener('click', function(e) {
+          if (body.classList.contains('mobile-nav-active')) {
+            e.preventDefault();
+            this.parentNode.classList.toggle('active');
+            this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+          }
+        });
+      });
+
+      // Close mobile nav when clicking outside
+      document.addEventListener('click', function(e) {
+        if (body.classList.contains('mobile-nav-active')) {
+          if (!e.target.closest('.navmenu') && !e.target.closest('.mobile-nav-toggle')) {
+            body.classList.remove('mobile-nav-active');
+            if (mobileNavToggle) {
+              mobileNavToggle.classList.add('bi-list');
+              mobileNavToggle.classList.remove('bi-x');
+            }
+          }
+        }
+      });
+    });
+
+    // Smooth navigation with preloader effect
+    document.querySelectorAll('a[href^="index.html"], a[href^="nosotros.html"], a[href^="Compra.html"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        // No prevenir default, dejar navegación normal
+        // Solo mostrar preloader si existe
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.style.display = 'block';
+        }
+      });
+    });
+
+    // Add cyberpunk glitch effect randomly
+    setInterval(() => {
+      const cards = document.querySelectorAll('.card-redes');
+      const randomCard = cards[Math.floor(Math.random() * cards.length)];
+      randomCard.style.animation = 'glitch 0.2s ease';
+      setTimeout(() => {
+        randomCard.style.animation = '';
+      }, 200);
+    }, 5000);
+
+    // Initialize matrix background
+    createMatrix();
+
+    // Regenerate matrix on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        document.getElementById('bgAnimation').innerHTML = '';
+        createMatrix();
+      }, 250);
+    });
+
+    // Add entrance animation
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '1';
+    });
+
+    // Hover sound simulation (visual feedback)
+    document.querySelectorAll('.card-redes').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.querySelector('.icon-border').style.animationDuration = '1s';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.querySelector('.icon-border').style.animationDuration = '3s';
+      });
+    });
+  </script>
+</body>
+</html>
